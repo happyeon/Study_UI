@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	.box {
+		border: 2px solid red;
+	}
+	#menu {
+		background-color: skyblue;
+		text-align: right;
+	}
+	a {
+		text-decoration: none;
+		font-size: 20pt;
+	}
+	#menu div{
+		display: inline-block;
+		margin-right: 10px;
+	}
+
+</style>
+
+<script type="text/javascript" src="resources/js/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+
+	$(function(){
+		// $변수 = jqeury 객체 (암묵적인 룰)
+		// $box = <div class="box"></div>
+		var $box = $("<div>").addClass("box");
+		// <div class="box"><div class="sub_menu"><a href="#"><span>국비지원</span></a></div><div>
+		$(".sub_menu:first").wrap($box);
+		$(".sub_menu").click(function(){
+			$(".sub_menu").each(function(){
+				if($(this).parent().is(".box")){
+					$(this).unwrap(".box");
+				}
+			});
+			$(this).wrap($box);
+		});
+		
+		// 해당 요소 각각을 태그로 감싸준다.
+		$("a").wrapInner("<span></span>")
+		// 해당 요소 전체를 태그로 감싸준다.
+		$("pre").wrapAll("<b></b>")
+	});
+
+</script>
+
+</head>
+<body>
+
+	<div id="menu">
+		<div class="sub_menu">
+			<a href="#"><span>국비지원</span></a>
+		</div>
+		<div class="sub_menu">
+			<a href="#">훈련검색</a>
+		</div>
+		<div class="sub_menu">
+			<a href="#">질문답변</a>
+		</div>
+		<div class="sub_menu">
+			<a href="#">과정후기</a>
+		</div>
+	</div>
+	
+	<pre>a</pre>
+	<pre>b</pre>
+	<pre>c</pre>
+	<pre>d</pre>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>팝업창</title>
+
+	<script type="text/javascript">
+	
+		function test() {
+			var val = document.getElementsByName("test")[0].value;		// val은 test의 값을 담는다.
+			// opener : 열어 준 사람, 오픈해 준 사람, 부모 객체 (js13_window01.html)
+			opener.document.getElementsByTagName("h1")[1].innerHTML=val;	// window01에 있는 h1 중 1번째 인덱스에 val의 값을 넣는다.
+			close();
+		}
+	
+	</script>
+
+</head>
+<body>
+
+	<input type="text" name="test" />
+	<input type="button" onclick="test()" value="전달" />
+	<input type="button" onclick="self.close()" value="창닫기">
+
+</body>
+</html>

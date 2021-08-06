@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<script type="text/javascript">
+	
+		function show01() {
+			var food = document.getElementsByName("food")[0];
+			// selectedIndex : 선택한 option 태그의 index 반환
+			var idx = food.selectedIndex;
+			// options : select가 가지고 있는 option 태그들의 집합(배열)
+			var foodval = food.options[idx].value;
+			alert(foodval + "맛있었겠다....");
+		}
+		
+		function show02() {
+			var food = document.getElementsByName("food")[1];
+			var str = "";
+			for (var i = 0; i < food.options.length; i++) {
+				// selected : option 태그가 선택되었는지 여부 (선택됨 : true / 안됨 : false)
+				if (food.options[i].selected) {
+					str += food.options[i].value + "\n";
+				}
+			}
+			alert(str);
+		}
+	
+	</script>
+
+
+</head>
+<body>
+
+	<h1>음식 선택하기</h1>
+	
+	<form>
+		<select name="food" onchange="show01();">
+			<option value="김치찌개">김치찌개</option>
+			<option value="쭈꾸미">쭈꾸미</option>
+			<option value="까눌레">까눌레</option>
+			<option value="칠리크랩">칠리크랩</option>
+			<option value="망고">망고</option>
+		</select>
+		<br><br><br><br><br>
+		<select name="food" multiple="multiple" size="5">
+			<option value="열무비빔밥">열무비빔밥</option>
+			<option value="떡볶이">떡볶이</option>
+			<option value="주먹밥">주먹밥</option>
+			<option value="계란찜">계란찜</option>
+			<option value="된장찌개">된장찌개</option>
+			<option value="케이크">케이크</option>
+			<option value="딸기">딸기</option>
+		</select>
+		<input type="button" value="선택" onclick="show02();" />
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>중복체크</title>
+
+	<script type="text/javascript">
+		
+		var ids = ["khacademy", "java", "script"];
+		
+		function confirmChk() {
+			var id = document.getElementsByName("id")[0].value;
+			var div = document.getElementsByTagName("div")[0];
+			if (ids.indexOf(id) != -1) {		// 배열에서 지정된 요소를 찾을 수 있는 첫 번째 인덱스를 반환하고 존재하지 않으면 -1을 반환
+				div.innerHTML = "<b>아이디가 존재합니다.</b>";
+			} else {
+				var userId = "사용할 수 있는 아이디입니다."
+				           + "<input type='button' value='확인'"
+				           + "onclick='insertId(\""+id+"\")'>";
+				           // 윗 줄 아주아주 중요!
+				           // 쌍따옴표가 없다면? 변수로 인식함
+				           // 문자열로 전달하고 싶다면 쌍따옴표를 꼭! 붙여줘야 함.
+				div.innerHTML = userId;
+			}
+		}
+		
+		function insertId(id) {
+			opener.document.getElementsByName("id")[0].value=id;
+			opener.document.getElementsByName("pwd")[0].focus();	// focus : 커서 이동
+			close();
+		}
+	
+	</script>
+
+</head>
+<body>
+
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id" /></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="중복확인" onclick="confirmChk()" />
+				<input type="button" value="취소" onclick="self.close()" />
+			</td>
+		</tr>
+	</table>
+	<div></div>
+
+</body>
+</html>

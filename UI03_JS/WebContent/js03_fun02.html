@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<script type="text/javascript">
+		
+		// 1. 명시적 함수
+		function func01() {
+			// semicolon(;) : 생략 가능. 단, 한 줄에 여러 명령을 사용하는 경우엔 생략 불가!
+			alert("명시적 함수"); alert("이름이 있는 함수!")
+		}
+		
+		// 2. 익명 함수 (변수에 함수가 저장됨)
+		var func02 = function(i) {
+			alert("익명 함수 - 이름이 없는 함수!" + i);
+		}
+		
+		// 3. 리터럴 함수 (함수리터럴)
+		function literalPrn(myliteral) {
+			myliteral("안녕하세요, 리터럴입니다.");
+			// 파라미터로 함수값을 받았기 때문에 ()을 붙여서 호출	
+		}
+		// 파라미터 안에 익명함수 넣어주었다.
+		
+		function func03() {
+			literalPrn(function(msg){
+				alert(msg);
+			});
+		}
+		
+		function valTest() {
+			// arguments : 전달된 값(arguments)들을 배열형태로 저장하는 객체
+			var msg = "qclass";
+			for (var i = 0; i < arguments.length; i++) {
+				msg += arguments[i] + " ";
+			}
+			alert(msg);
+		}
+		
+		// closure : 내부함수(자식)가 외부함수(부모)의 변수, 파라미터, 등에 접근 가능!
+		function closureTest(val) {
+			var msg = "!!!";
+			function addVal() {
+				alert(val + msg);
+			}
+			return addVal;
+		}
+		
+		var amEdu = closureTest('Servlet');
+		
+		function pmEdu(val) {
+			closureTest(val)();
+			// ()가 뒤에 오는 이유? closureTest(val)이 함수값이라서 뒤에 ()를 붙여줘야 한다.
+			// var tmp = closureTest(val);
+			// tmp();
+		}
+		
+		var t = function test() {
+			alert("javascript 재밌다!!!");
+		}();
+	
+	
+	</script>
+
+
+</head>
+<body>
+
+	<h1>함수!</h1>
+	
+	<h2>함수의 종류</h2>
+	
+	<p onclick="func01()">1. 명시적 함수</p>
+	<p onclick="func02(100)">2. 익명 함수</p>
+	<p onclick="func03()">3. 리터럴 함수 (함수리터럴)</p>
+	
+	<h2 onclick="valTest('멋쟁이', '최고', '짱이야!')">args(arguments) 속성</h2>
+	
+	<h2>클로저 (내부함수)</h2>
+	
+	<label for="am">오전강의</label>
+	<input type="text" id="am" />
+	<input type="button" value="클릭!" onclick="amEdu();" />
+	
+	<hr/>
+	
+	<label for="pm">오후강의</label>
+	<input type="text" id="pm" />
+	<input type="button" value="클릭!" onclick="pmEdu(pm.value);" />
+
+</body>
+</html>

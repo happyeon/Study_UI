@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<script type="text/javascript">
+	
+		function searchParent() {
+			var child02 = document.getElementsByTagName("p")[1];
+			var parent = child02.parentNode;
+			console.log(parent);
+			alert(parent.nodeName);
+			parent.style.backgroundColor = "yellow";
+		}
+		
+		function searchChild() {
+			var div = document.getElementsByTagName("div");
+			
+			alert(div.length);
+			
+			// childNodes : 모든 것들을 다 잡음. 태그뿐만 아니라
+			var divChildren = div[0].childNodes;
+			console.log(divChildren);
+			// 5번지인 이유 : textNode
+			alert("child03의 tagName : " + divChildren[5].tagName);
+			// child03의 backgroundColor를 skyblue로 변경!
+			divChildren[5].style.backgroundColor = "skyblue";
+		}
+		
+		function test01() {
+			var p = document.getElementsByTagName("p")[3];
+			var parent = p.parentNode;
+			console.log(parent);
+			alert(parent.nodeName);
+			parent.style.backgroundColor = "blue";
+		}
+		
+		function test02() {
+			var div = document.getElementsByTagName("div")[2];
+			var child = div.childNodes[3];
+			child.style.fontSize = "20pt";
+		}
+	
+	
+	</script>
+
+</head>
+<body>
+
+	<h1>부모탐색, 자식탐색</h1>
+	
+	<div>
+		<p>child01</p>
+		<p>child02</p>
+		<p>child03</p>
+	</div>
+	
+	<button onclick="searchParent();">부모탐색</button>
+	<button onclick="searchChild();">자식탐색</button>
+	
+	<!-- parentNode 사용하자. -->
+	<h3 onclick="test01();">1. "text01태그를 포함하고 있는 div 태그"의 배경색을 적용하자.</h3>
+	
+	<!-- childNodes 사용하자. -->
+	<h3 onclick="test02();">2. "2번지 div 태그에 포함된 test04 태그"의 폰트 크기를 20pt로 적용하자.</h3>
+	
+	<div>
+		<p>test01</p>
+		<p>test02</p>
+	</div>
+	<div>
+		<p>test03</p>
+		<p>test04</p>
+	</div>
+
+</body>
+</html>

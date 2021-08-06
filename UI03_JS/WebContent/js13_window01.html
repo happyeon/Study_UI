@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>윈도우 연습01</title>
+
+	<style type="text/css">
+		
+		#regist {
+			border: 1px solid black;
+			background: pink;
+			position: absolute;
+			top: 200px;
+			left: 500px;
+			display: none;
+		}
+		
+	</style>
+	
+	<!-- 
+		<position>
+		relative: 원래 자기자리
+		absolute: 부모객체
+	 -->
+	 
+	 <!-- 
+	 	display: none;				// 공간을 차지하지 않는다. (만들어지지 않은 상태)
+	 	visibility: hidden;			// 공간을 차지한다. (만들어져 있으나 보이지 않는 상태)
+	  -->
+	  
+	  
+	  <script type="text/javascript">
+	  	
+	  	function openWin() {
+			var url = "js13_window02.html";
+			var title = "myframe";		// 아래에 myframe이라는 이름을 가진 iframe 태그를 선언했기 때문에 창이 새로 뜨지 않고 같은 페이지 안에 생김
+			var prop = "top=200px, left=600px, width=500px, height=500px";
+			window.open(url, title, prop);		// prop이 없으면 새 탭에서 열림
+		}
+	  	
+	  	function registForm() {
+			document.getElementById("regist").style.display = "block";
+			document.body.style.background = "gray";
+			
+			var btns = document.getElementsByName("btn");		// NodeList
+			// for ~ in ~ collection/arrya (iterable 반복가능한)
+			for (var i in btns) { 		// for in문 (향상된 for문)		// for of문도 있음! 나중에 찾아보자
+			// for(var i = 0; i < btns.length; i++) {
+				btns[i].disabled = "disabled";		// disabled 속성을 disabled로 지정해준다.
+				
+			}
+		}
+			
+		function closeWin() {			// 위에 registForm과 반대의 기능을 가지고 있음
+			document.getElementById("regist").style.display = "none";
+			document.body.style.background = "white";
+			
+			var btns = document.getElementsByName("btn");
+			for (var i in btns) {
+				btns[i].disabled = "";
+			}
+		}
+		
+		function idchk() {
+			alert("중복체크를 확인하세요");
+		}
+		
+		function idCheck() {
+			open("js13_window03.html", "", "width=300px, height=300px");
+		}
+	  
+	  </script>
+
+</head>
+<body>
+
+	<h1>window객체</h1>
+	
+	<pre>
+	프로퍼티
+	 -document
+	 -history
+	 -location
+	 -navigator
+	 -screen
+	 -frames
+	 -parent
+	 -top
+	 -self
+	메서드
+	 -alert()
+	 -confirm()
+	 -prompt()
+	 -back()
+	 -forward()
+	 -setInterval()
+	 -ClearInterval()
+	 -setTimeout()
+	 -open()
+	 -close()
+	 -scroll(), scrollBy(), ScrollTo()
+	</pre>
+	
+	<div id="f1">
+		<h1>팝업창 만들기</h1>
+		<button onclick="openWin()" name="btn">창열기</button>
+		<hr/>
+		<h1>회원가입하기(div팝업창)</h1>
+		<button onclick="registForm()" name="btn">회원가입</button>
+	</div>
+	
+	<div id="regist">
+		<form>
+			<table>
+				<caption>회원가입</caption>
+				<tr>
+					<td>아이디</td>
+					<td><input type="text" name="id" onclick="idchk()" readonly="readonly" />
+					<input type="button" value="중복체크" onclick="idCheck()" /></td>
+				</tr>
+				<tr>
+					<td>패스워드</td>
+					<td><input type="password" name="pwd" alt="" style="color: red;" checked="checked" /></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="button" value="확인" onclick="closeWin()" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<br/><br/><br/>
+	<iframe name="myframe"></iframe>		<!-- 요즘은 잘 안쓰는 태그 -->
+
+</body>
+</html>

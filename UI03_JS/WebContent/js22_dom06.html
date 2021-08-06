@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js22</title>
+
+<script type="text/javascript">
+	function tableVal(){
+		var doc = document.forms[0];	// forms[0] -> Node = <form>   //forms : 배열로 가져옴 (s는 복수)
+		var vals = [doc.id.value, doc.pw.value, doc.addr.value, doc.phone.value];    //form이 가지고 있는 name="id"
+		
+		// 유효성검사 (유효값처리)
+		for(var i = 0; i < vals.length; i++){
+			if(vals[i] == null || vals[i].trim()=="" || vals[i]==undefined){		// 배열 안의 값이 초기화되지 않은 경우 -> undefined
+				alert("모두 다 입력해 주세요!!");
+				
+				// 함수 자체를 종료
+				return;
+			}
+		}
+		
+		document.getElementById("addtr").appendChild(createRow(vals));
+	}
+
+	function createRow(vals){
+		var tr = document.createElement("tr");
+		// <tr></tr>
+		
+		for(var i = 0;i<vals.length;i++){
+			var td = document.createElement("td");
+			// <td></td>
+			// <td></td>
+			// <td></td>
+			// <td></td>
+			td.textContent=vals[i];
+			// <td> id값 </td>
+			// <td> pw값 </td>
+			// <td> addr값 </td>
+			// <td> phone값 </td>
+			tr.appendChild(td);
+			// <tr><td>id</td><td>pw</td><td>addr</td><td>phone</td></tr>
+		}
+		
+		var dTd = document.createElement("td");
+		// <td></td>
+		dTd.innerHTML="<input type='button' value='삭제' onclick='delRow(this)'>";
+		// <td><input type='button' value='삭제' onclick='delRow(this)'></td>
+		tr.appendChild(dTd);
+		// <tr>
+		//	  <td> id값 </td>
+		// 	  <td> pw값 </td>
+		//    <td> addr값 </td>
+		//    <td> phone값 </td>
+		//    <td><input type='button' value='삭제' onclick='delRow(this)'></td>
+		// </tr>
+		
+		return tr;
+	}
+
+	function deleteVal(){
+		var tbody = document.getElementById("addtr");
+		// 현재 node에 child nodes가 있는지 boolean값으로 반환
+		while(tbody.hasChildNodes()) { 
+			tbody.removeChild(tbody.lastChild); 	// lastchild: node의 마지막 자식
+		} 
+
+	}
+	
+	function delRow(ele){
+		// <tr>
+		//	  <td> id값 </td>
+		// 	  <td> pw값 </td>
+		//    <td> addr값 </td>
+		//    <td> phone값 </td>
+		//    <td><input type='button' value='삭제' onclick='delRow(this)'></td>			// this -> input태그
+		// </tr>
+		var delTr = ele.parentNode.parentNode;		// ele.parentNode: td, ele.parentNode.parentNode: tr
+		var tbody = document.getElementById("addtr");
+		tbody.removeChild(delTr);
+	}
+
+</script>
+
+
+</head>
+<body>
+
+	<form>
+		<table id="intable">
+			<tr>
+				<td>아이디:</td>
+				<td><input type="text" name="id"/></td>
+			</tr>
+			<tr>
+				<td>비밀번호:</td>
+				<td><input type="text" name="pw"/></td>
+			</tr>
+			<tr>
+				<td>주소:</td>
+				<td><input type="text" name="addr"/></td>
+			</tr>
+			<tr>
+				<td>전화번호:</td>
+				<td><input type="text" name="phone"/></td>
+			</tr>
+		</table>
+		<input type="button" value="추가" onclick="tableVal();" />
+		<input type="button" value="삭제" onclick="deleteVal();" />
+	</form>
+	
+	<div id="addtable">
+		<table border="1" id="ctb">
+			<col width="100px"/>
+			<col width="100px"/>
+			<col width="300px"/>
+			<col width="200px"/>
+			<col width="100px"/>
+			<thead>
+				<tr>
+					<th>아이디</th>
+					<th>비밀번호</th>
+					<th>주소</th>
+					<th>전화번호</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody id="addtr">
+			</tbody>
+		</table>
+	</div>
+	
+	
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

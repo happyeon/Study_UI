@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- form 진짜진짜 엄청 중요함 -->
+	<!-- 
+	get: 리퀘스트의 header의 마지막 공간에 저장. 크지 않아서 간단한 정보 보낼 때 
+	post: 정보를 많이 보낼 때
+	-->
+	<!-- https: (s)security 암호화해서 안보임 -->
+	<form action="html08_form01_res.html" method="post">
+		<fieldset>
+			<legend>회원가입</legend>
+			<!-- 원래는 이렇게 영역을 나타낼 때는 p태그가 아니라 div태그 써야 함 -->
+			<p>
+				아이디 : <input type="text" name="id" />
+			</p>
+			<p>
+				비밀번호 : <input type="password" name="pw" />
+			</p>
+			<p>
+				이메일 수신여부<br/>
+				<!-- radio button은 같은 name 일 때 중복 선택 불가! -->
+				<input type="radio" name="rdo" value="y">Y<br/>
+				<input type="radio" name="rdo" value="n">N
+			</p>
+			<p>
+				관심분야<br/>
+				<!-- 체크박스는 여러 개 선택 가능 -->
+				<input type="checkbox" name="cb1" value="html">HTML<br/>
+				<input type="checkbox" name="cb2" value="css">CSS<br/>
+				<input type="checkbox" name="cb3" value="javascript">JavaScript
+			</p>
+			<p>
+				<input type="button" value="그냥 버튼">
+				<input type="reset" value="취소">
+				<input type="submit" value="전송">
+			</p>
+			<p>
+				<input type="file"/>
+				<input type="hidden" name="myhidden" value="my hidden value">
+			</p>
+		</fieldset>
+	</form>
+	
+<!-- 
+	query String
+	? k = v & k = v
+	값을 전달하는
+ -->
+
+</body>
+</html>

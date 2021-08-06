@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<script type="text/javascript">
+		
+		function searchId() {
+			// id는 유일한 하나이기 때문에 Element
+			var doc = document.getElementById("test");
+			doc.innerHTML = "id로 탐색!";
+			doc.style.color = "red";
+		}
+		
+		function searchName() {
+			// Name은 여러 개가 올 수 있기 때문에 Elements
+			// node list
+			var doc = document.getElementsByName("test02");
+			doc[1].value = "name 속성으로 탐색";
+		}
+		
+		function searchTagName() {
+			var doc = document.getElementsByTagName("p");
+			doc[3].innerHTML = "tagName으로 탐색!!";
+			doc[3].style.color = "blue";
+		}
+		
+		function searchQS() {
+			// node list
+			// var doc = document.querySelectorAll("#test");
+			// doc[0].innerHTML = "querySelectorAll(css선택자)";
+			
+			// node
+			var doc = document.querySelector("#test");
+			doc.innerHTML = "querySelector(css선택자)";
+		}
+	
+	</script>
+
+</head>
+<body>
+
+	<!-- Document(->html) Object(->tag를 js객체로) Model       객체 하나를 Node, 여러 개의 배열을 node list -->
+	<p onclick="searchQS();">DOM 탐색 메서드</p>
+	
+	<p id="test" onclick="searchId();">1. 엘리먼트의 id로 탐색 - 리턴 : 값 하나</p>
+	<p onclick="searchName();">
+		2. 엘리먼트의 name으로 탐색 - 리턴 : 배열 (node list)<br/>
+		<input type="text" name="test02" value="" /><br/>
+		<input type="text" name="test02" value="" /><br/>
+		<input type="text" name="test02" value="" /><br/> 
+	</p>
+	
+	<p onclick="searchTagName();">3. 엘리먼트의 태그이름으로 탐색 - 리턴 : 배열 (node list)</p>
+
+</body>
+</html>

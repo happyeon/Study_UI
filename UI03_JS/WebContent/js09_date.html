@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<script type="text/javascript">
+		
+		onload=function(){
+			document.getElementsByTagName("button")[0].onclick = testDate01;
+			document.getElementsByTagName("button")[1].onclick = testDate02;
+			document.getElementsByTagName("button")[2].onclick = testDate03;
+			document.getElementsByTagName("button")[3].onclick = testDate04;
+			document.getElementsByTagName("button")[4].onclick = testDate05;
+		}
+		
+		function testDate01() {
+			var inputDate = document.getElementById("today");
+			var date = new Date();
+			
+			inputDate.innerHTML += date.toDateString() + "<br/>";
+			inputDate.innerHTML += date.toLocaleDateString() + "<br/>";
+			inputDate.innerHTML += date.toLocaleString() + "<br/>";
+			inputDate.innerHTML += date.toLocaleTimeString() + "<br/>";
+		}
+		
+		function testDate02() {
+			var dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+			
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = date.getMonth() + 1;
+			var day = date.getDate();
+			var week = date.getDay();
+			document.getElementById("today").innerHTML = year + "/" + month + "/" + day + "/" + dayOfWeek[week];
+		}
+		
+		function testDate03() {
+			// specific 이라는 id를 가진 span 태그의 innerHTML에 
+			// 2021/1/12을 출력하고 싶다.
+			
+			var year = 2021;
+			var month = 1;
+			var day = 12;
+			
+			// 월 기본값이 0이라서
+			var target = new Date(year, month-1, day);
+			
+			var specific = document.getElementById("specific");
+			specific.innerHTML = target;
+		}
+		
+		function testDate04() {
+			var dates = document.getElementById("dates").value;
+			var inputDay = document.getElementById("inputDay").value;
+			var date = new Date(dates);
+			date.setDate(date.getDate() + parseInt(inputDay));
+			document.getElementById("result").value = date.toLocaleDateString();
+		}
+		
+		function testDate05() {
+			var start = document.getElementById("start").value;
+			var end = document.querySelector("#end").value;
+			
+			var startDay = new Date(start);
+			var endDay = new Date(end);
+			// getTime() : milliseconds 로 반환
+			var dday = (endDay.getTime() - startDay.getTime()) / (1000 * 60 * 60 * 24);
+			document.getElementById("dday").value = dday;
+		}
+	
+	</script>
+
+</head>
+<body>
+
+	<h1>오늘 날짜 출력하기</h1>
+	<button>오늘날짜</button><br/>
+	<button>오늘날짜(표현)</button><br/>
+	<span id="today"></span><br/>
+	
+	<hr/>
+	
+	<h1>특정 날짜 출력하기</h1>
+	<button>특정날짜</button><br/>
+	<span id="specific"></span>
+	
+	<hr/>
+	
+	<h1>경과 날짜 구하기</h1>
+	<label>지정날짜</label>
+	<input type="date" id="dates" /><br/>
+	<label>경과일</label>
+	<input type="number" id="inputDay" /><br/>
+	<label>경과 후 날짜</label>
+	<input type="text" id="result" readonly="readonly" /><br/>
+	<button>경과날짜</button>
+	
+	<hr/>
+	
+	<h1>D-DAY</h1>
+	<label>시작 날짜</label>
+	<input type="date" id="start" /><br/>
+	<label>종료 날짜</label>
+	<input type="date" id="end" /><br/>
+	<label>남은 일수</label>
+	<input type="text" readonly="readonly" id="dday" /><br/>
+	<button>남은 일수</button>
+	<!-- 조건 : getTime() 사용해서 풀기! -->
+	
+
+</body>
+</html>

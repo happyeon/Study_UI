@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<!-- 외부 링크 방식 -->
+	<!-- scr와 같이 경로를 작성한 경우 안에 아무것도 쓰면 안됨 -->
+	<script type="text/javascript" src="resources/js/test.js"></script>
+	
+	<!-- 내부 작성 방식 -->
+	<script type="text/javascript">
+		
+		function embeddedTest() {
+				var doc = document.getElementsByTagName("li")[1];
+				doc.style.color = "red";
+				doc.innerHTML = "<strong>글자가 바뀝니다.</strong>";
+		}
+	
+	</script>
+
+</head>
+<body>
+
+	<h1>자바스크립트의 작성방식 3가지</h1>
+	
+	<ol>
+		<!-- 1. inline -->
+		<li onclick="alert('inline!');">inline 방식</li>
+		<li onclick="embeddedTest();">내부 작성 방식</li>
+		<li onclick="test();">외부 링크 방식</li>
+	</ol>
+
+</body>
+</html>
